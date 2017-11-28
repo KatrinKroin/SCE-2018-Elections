@@ -7,6 +7,9 @@
 <script>
 
     $(document).ready(function(){
+        $('#redirect-out-btn').on('click', function(e) {
+            window.location.replace("/logout");
+        });
         $('#confirm-selection').on('click', '.btn-ok', function(e) {
             var $modalDiv = $(e.delegateTarget);
             var name = $(this).data('name');
@@ -22,7 +25,7 @@
                 data: {party_name: name},
                 success: function( data, textStatus, jQxhr ){
                      $modalDiv.modal('hide').removeClass('loading');
-                     window.location.replace("/login");
+                     $("#successModal").modal('show');
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
@@ -75,6 +78,22 @@
                         <center>
                             <button type="button" class="btn btn-default" data-dismiss="modal">ביטול</button>
                             <button type="button" class="btn btn-positive btn-ok">אישור</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div dir="rtl" class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successLabelModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>ההצבעה נקלטה בהצלחה!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <center>
+                            <button id="redirect-out-btn" type="button" class="btn btn-positive">אישור</button>
                         </center>
                     </div>
                 </div>
