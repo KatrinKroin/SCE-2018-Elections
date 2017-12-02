@@ -10,7 +10,7 @@ python db_crete.py
 ```
 
 ## Run the applicaiton
-To execute the application, runn this command:
+To execute the application, run this command:
 ```cmd
 python run.py
 ```
