@@ -6,9 +6,9 @@ from app import db
 db.create_all()
 db.session.commit()
 
-admon = User('tomer', 'admon','444444444')
-tomer = User(u'תומר', u'אדמון','333333333')
-katrin = User('katrin', 'kroin','222222222')
+admon = User('tomer', 'admon', '444444444')
+tomer = User(u'תומר', u'אדמון', '333333333')
+katrin = User('katrin', 'kroin', '222222222')
 shai = User('shai', 'hod', '111111111')
 
 avoda = Party(u'העבודה', 'https://www.am-1.org.il/wp-content/uploads/2015/03/%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94.-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%97%D7%A6.jpg')
@@ -27,4 +27,4 @@ db.session.add(shai)
 db.session.commit()
 users = User.query.all()
 
-print(users)
+print users
