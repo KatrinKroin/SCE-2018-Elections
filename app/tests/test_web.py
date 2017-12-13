@@ -44,7 +44,7 @@ class WebTest(unittest.TestCase):
             data=dict(id='123456789', first_name='test', last_name='test'),
             follow_redirects=True
         )
-        self.assertIn('ברוכים הבאיםo', response.data.decode('utf8'))
+        self.assertIn('ברוכים הבאיםoo', response.data.decode('utf8'))
 
     def test_login_without_id(self):
         tester = app.test_client()
