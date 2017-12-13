@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+
 import unittest
-from app import app
-from app import db
+from app import app, db
+from app.models import User
 
 
 class WebTest(unittest.TestCase):
@@ -9,12 +11,21 @@ class WebTest(unittest.TestCase):
     TESTING = True
 
     def create_app(self):
-        # pass in test configuration
-        # return create_app(self)
-        pass
+        # pass in test configurations
+        config_name = 'testing'
+        return app(config_name)
 
     def setUp(self):
+        db.session.commit()
+        db.drop_all()
         db.create_all()
+
+        # create test admin user
+        test = User(first_name="test", last_name='test', id_num='123456789')
+
+        # save users to database
+        db.session.add(test)
+        db.session.commit()
 
     def test_index(self):
         tester = app.test_client(self)
@@ -30,7 +41,7 @@ class WebTest(unittest.TestCase):
         tester = app.test_client()
         response = tester.post(
             '/login',
-            data=dict(id='111111111', first_name='shai', last_name='hod'),
+            data=dict(id='123456789', first_name='test', last_name='test'),
             follow_redirects=True
         )
         self.assertIn('ברוכים הבאים', response.data)
