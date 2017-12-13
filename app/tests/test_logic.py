@@ -13,6 +13,11 @@ class LogicTest(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
 
+    def init_db(self):
+        test = User('test', 'test', '123456789')
+        db.session.add(test)
+        db.session.commit()
+
     def create_app(self):
         app.config.update(
             # Specify the test database
@@ -20,15 +25,16 @@ class LogicTest(LiveServerTestCase):
             # Change the port that the liveserver listens on
             LIVESERVER_PORT=8943
         )
+        db.init_app(app)
+        with app.app_context():
+            db.drop_all()
+            db.create_all()
+            self.init_db()
         return app
 
     def setUp(self):
         self.driver = webdriver.PhantomJS()
         self.driver.get(self.get_server_url())
-
-        test = User('test', 'test', '123456789')
-        db.session.add(test)
-        db.session.commit()
 
     def tearDown(self):
         self.driver.quit()
