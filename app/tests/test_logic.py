@@ -51,7 +51,7 @@ class LogicTest(LiveServerTestCase):
         fnameObj.send_keys('test')
         lnameObj.send_keys('test' + Keys.ENTER)
 
-        assert 'ברוכים הבאים' in self.driver.page_source()
+        assert 'ברוכים הבאים' in self.driver.page_source
 
 
 if __name__ == '__main__':
