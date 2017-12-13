@@ -50,10 +50,12 @@ class LogicTest(LiveServerTestCase):
         idObj = self.driver.find_element_by_xpath('//*[@id="id"]')
         fnameObj = self.driver.find_element_by_xpath('//*[@id="first_name"]')
         lnameObj = self.driver.find_element_by_xpath('//*[@id="last_name"]')
+        submit = self.driver.find_element_by_class_name('btn btn-default')
 
         idObj.send_keys(123456789)
         fnameObj.send_keys('test')
-        lnameObj.send_keys('test' + Keys.ENTER)
+        lnameObj.send_keys('test')
+        submit.click()
 
         assert 'ברוכים הבאים' in self.driver.page_source
 
