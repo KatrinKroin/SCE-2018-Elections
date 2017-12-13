@@ -46,7 +46,7 @@ class LogicTest(LiveServerTestCase):
         idObj = self.driver.find_element_by_xpath('//*[@id="id"]')
         fnameObj = self.driver.find_element_by_xpath('//*[@id="first_name"]')
         lnameObj = self.driver.find_element_by_xpath('//*[@id="last_name"]')
-        submit = self.driver.find_elements_by_id('submit')
+        submit = self.driver.find_element_by_xpath('/html/body/div[2]/form/input[4]')
 
         idObj.send_keys(123456789)
         fnameObj.send_keys('test')
