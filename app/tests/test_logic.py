@@ -43,14 +43,16 @@ class LogicTest(LiveServerTestCase):
             db.session.remove()
 
     def test_correct_login(self):
-        obj = self.driver.find_elements_by_id('id')
-        obj.send_key('123456789')
-        obj = self.driver.find_elements_by_id('first_name')
-        obj.send_keys('test')
-        obj = self.driver.find_elements_by_id('last_name')
-        obj.send_keys('test')
-        obj = self.driver.find_element_by_name('כניסה')
-        obj.send_keys(Keys.ENTER)
+        idObj = self.driver.find_element_by_xpath('//*[@id="id"]')
+        fnameObj = self.driver.find_element_by_xpath('//*[@id="first_name"]')
+        lnameObj = self.driver.find_element_by_xpath('//*[@id="last_name"]')
+        submit = self.driver.find_elements_by_id('submit')
+
+        idObj.send_keys(123456789)
+        fnameObj.send_keys('test')
+        lnameObj.send_keys('test')
+        submit.click()
+
         assert 'ברוכים הבאים' in self.driver.page_source().decode('utf8')
 
 
