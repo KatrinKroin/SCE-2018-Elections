@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="1" errors="1" failures="0" skip="0"><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="exceptions.ImportError" message="No module named test_logic"><![CDATA[Traceback (most recent call last):
+  File "C:\Users\Shai\AppData\Local\Programs\Python\Python27\Lib\unittest\case.py", line 329, in run
+    testMethod()
+  File "d:\documents and settings\documents\pycharmprojects\virtual environments\devops2018\lib\site-packages\nose\loader.py", line 418, in loadTestsFromName
+    addr.filename, addr.module)
+  File "d:\documents and settings\documents\pycharmprojects\virtual environments\devops2018\lib\site-packages\nose\importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "d:\documents and settings\documents\pycharmprojects\virtual environments\devops2018\lib\site-packages\nose\importer.py", line 79, in importFromDir
+    fh, filename, desc = find_module(part, path)
+ImportError: No module named test_logic
+]]></error></testcase></testsuite>
