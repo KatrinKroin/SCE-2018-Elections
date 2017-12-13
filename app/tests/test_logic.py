@@ -22,12 +22,9 @@ class LogicTest(LiveServerTestCase):
         db.session.commit()
 
     def create_app(self):
-        app.config.update(
-            # Specify the test database
-            SQLALCHEMY_DATABASE_URI='mysql+pymysql://',
-            # Change the port that the liveserver listens on
-            LIVESERVER_PORT=8943
-        )
+        app.config['TESTING'] = True
+        app.config['LIVESERVER_PORT'] = 8943
+        app.config['LIVESERVER_TIMEOUT'] = 10
         db.init_app(app)
         with app.app_context():
             db.drop_all()
