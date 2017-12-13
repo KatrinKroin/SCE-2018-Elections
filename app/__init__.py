@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_cors import CORS
+#from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 app.config.from_object('flask_config')
 db = SQLAlchemy(app)
 login_manager = LoginManager()
