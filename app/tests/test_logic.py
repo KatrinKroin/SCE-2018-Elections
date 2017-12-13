@@ -51,7 +51,7 @@ class LogicTest(LiveServerTestCase):
         idObj.send_keys(123456789)
         fnameObj.send_keys('test')
         lnameObj.send_keys('test')
-        submit.click()
+        lnameObj.send_keys(Keys.ENTER)
 
         assert 'ברוכים הבאים' in self.driver.page_source().decode('utf8')
 
