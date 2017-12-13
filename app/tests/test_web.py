@@ -44,12 +44,12 @@ class WebTest(unittest.TestCase):
             data=dict(id='123456789', first_name='test', last_name='test'),
             follow_redirects=True
         )
-        self.assertIn('ברוכים הבאים', response.data)
+        self.assertIn('ברוכים הבאים', response.data.decode('utf8'))
 
     def test_login_without_id(self):
         tester = app.test_client()
         response = tester.post('/login', data=dict(id='', first_name='wrong', last_name='wrong'), follow_redirects=True)
-        self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data)
+        self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data.decode('utf8'))
 
     def tearDown(self):
         db.session.remove()
