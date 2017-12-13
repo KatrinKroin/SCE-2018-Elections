@@ -24,7 +24,7 @@ class LogicTest(LiveServerTestCase):
     def create_app(self):
         app.config.update(
             # Specify the test database
-            SQLALCHEMY_DATABASE_URI='mysql://',
+            SQLALCHEMY_DATABASE_URI='mysql+pymysql://',
             # Change the port that the liveserver listens on
             LIVESERVER_PORT=8943
         )
@@ -41,8 +41,9 @@ class LogicTest(LiveServerTestCase):
 
     def tearDown(self):
         self.driver.quit()
-        db.drop_all()
-        db.session.remove()
+        with app.app_context():
+            db.drop_all()
+            db.session.remove()
 
     def test_correct_login(self):
         obj = self.driver.find_elements_by_id('id')
@@ -53,7 +54,7 @@ class LogicTest(LiveServerTestCase):
         obj.send_keys('test')
         obj = self.driver.find_element_by_name('כניסה')
         obj.send_keys(Keys.ENTER)
-        assert 'ברוכים הבאים' in self.driver.page_source()
+        assert 'ברוכים הבאים' in self.driver.page_source().decode('utf8')
 
 
 if __name__ == '__main__':
