@@ -3,7 +3,7 @@ from __future__ import absolute_import
 
 import unittest
 from app import app, db
-from app.models import User
+from app.models import User, Party
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from flask_testing import LiveServerTestCase
@@ -14,8 +14,11 @@ class LogicTest(LiveServerTestCase):
     TESTING = True
 
     def init_db(self):
+        db.session.commit()
         test = User('test', 'test', '123456789')
+        likud = Party(u'הליכוד', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Likud_Logo.svg/250px-Likud_Logo.svg.png')
         db.session.add(test)
+        db.session.add(likud)
         db.session.commit()
 
     def create_app(self):
