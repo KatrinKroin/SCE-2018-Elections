@@ -39,6 +39,7 @@ class LogicTest(LiveServerTestCase):
     def setUp(self):
         self.driver = webdriver.PhantomJS()
         self.driver.get(self.get_server_url())
+        self.str = u'המצביע אינו מופיע במערכת'
 
     def tearDown(self):
         self.driver.quit()
@@ -58,6 +59,17 @@ class LogicTest(LiveServerTestCase):
         submit.click()
 
         assert 'ברוכים הבאים' in self.driver.page_source
+
+    def test_incorrect_login(self):
+
+        userID = self.driver.find_element_by_id("id")
+        userName = self.driver.find_element_by_id("first_name")
+        userLastName = self.driver.find_element_by_id("last_name")
+        userName.send_keys("test")
+        userLastName.send_keys("test")
+        userID.send_keys("222111777")
+        userID.send_keys(Keys.ENTER)
+        assert self.str in self.driver.page_source
 
 
 if __name__ == '__main__':

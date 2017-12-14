@@ -51,10 +51,14 @@ class WebTest(unittest.TestCase):
         response = tester.post('/login', data=dict(id='', first_name='wrong', last_name='wrong'), follow_redirects=True)
         self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data.decode('utf8'))
 
+    def test_user_not_exists(self):
+        tester = app.test_client()
+        response = tester.post('login', data=dict(id='000000000',first_name='wrong', last_name='wrong'),follow_redirects=True)
+        self.assertIn('המצביע אינו מופיע במערכת', response.data.decode('utf-8'))
+
     def tearDown(self):
         db.session.remove()
         db.drop_all()
-
 
 if __name__ == '__main__':
     unittest.main()
