@@ -1,3 +1,4 @@
+selenium
 alembic==0.9.1
 aniso8601==1.2.0
 Babel==2.4.0

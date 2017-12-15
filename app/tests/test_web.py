@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-
 import unittest
 from app import app, db
 from app.models import User
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 class WebTest(unittest.TestCase):
@@ -59,6 +61,7 @@ class WebTest(unittest.TestCase):
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+
 
 if __name__ == '__main__':
     unittest.main()
