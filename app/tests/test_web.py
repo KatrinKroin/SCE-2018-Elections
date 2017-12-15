@@ -3,9 +3,9 @@ import unittest
 from app import app, db
 from app.models import User
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 
 
 class WebTest(unittest.TestCase):
