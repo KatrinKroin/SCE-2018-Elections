@@ -70,8 +70,6 @@ class WebTest(unittest.TestCase):
 
         str = response.data.decode('utf-8')
 
-        print str
-
         assert 'המצביע אינו מופיע במערכת' in str
 
 
