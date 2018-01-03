@@ -4,7 +4,9 @@ from app import app, db
 from app.models import User
 
 import sys
-reload(sys)
+
+import importlib
+importlib.reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
