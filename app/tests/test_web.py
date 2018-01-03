@@ -3,6 +3,10 @@ import unittest
 from app import app, db
 from app.models import User
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 class WebTest(unittest.TestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
@@ -47,17 +51,20 @@ class WebTest(unittest.TestCase):
             data=dict(id='123456789', first_name='test', last_name='test'),
             follow_redirects=True
         )
-        self.assertIn('ברוכים הבאים', response.data)
+        assert 'ברוכים הבאים' in response.data
+        # self.assertIn('ברוכים הבאים', response.data)
 
     def test_login_without_id(self):
         tester = app.test_client()
         response = tester.post('/login', data=dict(id='', first_name='wrong', last_name='wrong'), follow_redirects=True)
-        self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data)
+        assert 'חסרים הנתונים, נא הזן את כל השדות' in response.data
+        # self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data)
 
     def test_user_not_exists(self):
         tester = app.test_client()
         response = tester.post('login', data=dict(id='000000000', first_name='wrong', last_name='wrong'),follow_redirects=True)
-        self.assertIn('המצביע אינו מופיע במערכת', response.data)
+        assert 'המצביע אינו מופיע במערכת' in response.data
+        # self.assertIn('המצביע אינו מופיע במערכת', response.data)
 
 
 if __name__ == '__main__':
