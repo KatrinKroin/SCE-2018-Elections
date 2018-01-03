@@ -3,9 +3,9 @@ import unittest
 from app import app, db
 from app.models import User
 
-# import sys
-# reload(sys)
-# sys.setdefaultencoding('utf-8')
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 class WebTest(unittest.TestCase):
@@ -51,20 +51,28 @@ class WebTest(unittest.TestCase):
             data=dict(id='123456789', first_name='test', last_name='test'),
             follow_redirects=True
         )
-        assert 'ברוכים הבאים' in response.data
-        # self.assertIn('ברוכים הבאים', response.data)
+
+        str = response.data.decode('utf-8')
+
+        assert 'ברוכים הבאים' in str
 
     def test_login_without_id(self):
         tester = app.test_client()
         response = tester.post('/login', data=dict(id='', first_name='wrong', last_name='wrong'), follow_redirects=True)
-        assert 'חסרים הנתונים, נא הזן את כל השדות' in response.data
-        # self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data)
+
+        str = response.data.decode('utf-8')
+
+        assert 'חסרים הנתונים, נא הזן את כל השדות' in str
 
     def test_user_not_exists(self):
         tester = app.test_client()
         response = tester.post('login', data=dict(id='000000000', first_name='wrong', last_name='wrong'),follow_redirects=True)
-        assert 'המצביע אינו מופיע במערכת' in response.data
-        # self.assertIn('המצביע אינו מופיע במערכת', response.data)
+
+        str = response.data.decode('utf-8')
+
+        print str
+
+        assert 'המצביע אינו מופיע במערכת' in str
 
 
 if __name__ == '__main__':
