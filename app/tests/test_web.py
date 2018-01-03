@@ -51,19 +51,19 @@ class WebTest(unittest.TestCase):
             data=dict(id='123456789', first_name='test', last_name='test'),
             follow_redirects=True
         )
-        assert b'ברוכים הבאים' in response.data
+        assert 'ברוכים הבאים' in response.data
         # self.assertIn('ברוכים הבאים', response.data)
 
     def test_login_without_id(self):
         tester = app.test_client()
         response = tester.post('/login', data=dict(id='', first_name='wrong', last_name='wrong'), follow_redirects=True)
-        assert b'חסרים הנתונים, נא הזן את כל השדות' in response.data
+        assert 'חסרים הנתונים, נא הזן את כל השדות' in response.data
         # self.assertIn('חסרים הנתונים, נא הזן את כל השדות', response.data)
 
     def test_user_not_exists(self):
         tester = app.test_client()
         response = tester.post('login', data=dict(id='000000000', first_name='wrong', last_name='wrong'),follow_redirects=True)
-        assert b'המצביע אינו מופיע במערכת' in response.data
+        assert 'המצביע אינו מופיע במערכת' in response.data
         # self.assertIn('המצביע אינו מופיע במערכת', response.data)
 
 
