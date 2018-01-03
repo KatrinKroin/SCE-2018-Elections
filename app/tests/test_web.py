@@ -3,6 +3,7 @@ import unittest
 from app import app, db
 from app.models import User
 
+# for run tests in pycharm un-comment this lines
 # import sys
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
