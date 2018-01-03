@@ -6,10 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from flask_testing import LiveServerTestCase
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
 
 class LogicTest(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
