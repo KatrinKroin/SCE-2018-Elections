@@ -83,7 +83,7 @@ class LogicTest(LiveServerTestCase):
 
         self.driver.find_element_by_class_name('btn').click()
 
-        assert 'הצבעתך נקלטה בהצלחה' in self.driver.page_source
+        assert 'ההצבעה נקלטה בהצלחה!' in self.driver.page_source
 
         self.driver.find_element_by_class_name('btn').click()
 
