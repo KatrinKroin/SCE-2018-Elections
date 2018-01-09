@@ -1,7 +1,5 @@
-#update system
 sudo yum -y update && upgrade
 
-#install git python and devtools
 sudo yum -y install git-all centos-relese-SCL python-setuptools python-setuptools-devel python-devel
 sudo yum -y groupinstall "Development Tools"
 
