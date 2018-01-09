@@ -55,15 +55,39 @@ class LogicTest(LiveServerTestCase):
         assert 'ברוכים הבאים' in self.driver.page_source
 
     def test_incorrect_login(self):
-
-        userID = self.driver.find_element_by_id("id")
-        userName = self.driver.find_element_by_id("first_name")
-        userLastName = self.driver.find_element_by_id("last_name")
-        userName.send_keys("test")
-        userLastName.send_keys("test")
-        userID.send_keys("222111777")
+        userID = self.driver.find_element_by_id('id')
+        userName = self.driver.find_element_by_id('first_name')
+        userLastName = self.driver.find_element_by_id('last_name')
+        userName.send_keys('test')
+        userLastName.send_keys('test')
+        userID.send_keys('222111777')
         userID.send_keys(Keys.ENTER)
+
         assert self.str in self.driver.page_source
+
+    def test_full_integration(self):
+        idObj = self.driver.find_element_by_id('id')
+        idObj.send_keys('123456789')
+        fnameObj = self.driver.find_element_by_id('first_name')
+        fnameObj.send_keys('test')
+        lnameObj = self.driver.find_element_by_id('last_name')
+        lnameObj.send_keys('test')
+        idObj.send_keys(Keys.ENTER)
+
+        assert 'לצורך הצבעה, בחר את המפלגה הרצויה' in self.driver.page_source
+
+        self.driver.find_element_by_id('הליכוד').click()
+        self.driver.find_element_by_name('סיום').click()
+
+        assert 'האם אתה בטוח' in self.driver.page_source
+
+        self.driver.find_element_by_class_name('btn btn-positive btn-ok').click()
+
+        assert 'הצבעתך נקלטה בהצלחה' in self.driver.page_source
+
+        self.driver.find_element_by_class_name('btn btn-positive').click()
+
+        assert 'ברוכים הבאים' in self.driver.page_source
 
 
 if __name__ == '__main__':
