@@ -76,16 +76,16 @@ class LogicTest(LiveServerTestCase):
 
         assert 'לצורך הצבעה, בחר את המפלגה הרצויה' in self.driver.page_source
 
-        self.driver.find_element_by_id('הליכוד').click()
-        self.driver.find_element_by_name('סיום').click()
+        self.driver.find_element_by_tag_name('img').click()
+        self.driver.find_element_by_class_name('btn').click()
 
         assert 'האם אתה בטוח' in self.driver.page_source
 
-        self.driver.find_element_by_class_name('btn btn-positive btn-ok').click()
+        self.driver.find_element_by_class_name('btn').click()
 
         assert 'הצבעתך נקלטה בהצלחה' in self.driver.page_source
 
-        self.driver.find_element_by_class_name('btn btn-positive').click()
+        self.driver.find_element_by_class_name('btn').click()
 
         assert 'ברוכים הבאים' in self.driver.page_source
 
