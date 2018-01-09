@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo yum -y update && upgrade
 
 sudo yum -y install git-all centos-relese-SCL python-setuptools python-setuptools-devel python-devel
