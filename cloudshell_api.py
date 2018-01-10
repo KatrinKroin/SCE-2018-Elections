@@ -28,3 +28,5 @@ for att in resource_attributes:
     if att.Name == 'Public IP':
         public_ip = att.Value  ## for getting the public ip
         break
+
+print (my_resource[0].FullAddress)
