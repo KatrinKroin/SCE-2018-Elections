@@ -16,11 +16,6 @@ resources = session.GetReservationDetails(reservation_id).ReservationDescription
 my_resource = [resource for resource in resources
                if resource.ResourceModelName == DEPLOYED_APP_MODEL]
 
-if len(my_resource) > 1:
-    raise Exception('There are more then one app in the sandbox')
-
-if len(my_resource) == 0:
-    raise Exception('There are no deployed application in the sandbox')
 
 resource_attributes = session.GetResourceDetails(my_resource[0].Name).ResourceAttributes
 public_ip = None
