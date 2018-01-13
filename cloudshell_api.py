@@ -24,3 +24,4 @@ for item in resource_att:
     if item.Name == 'Public IP':
         sys.stdout.write(item.Value)
         break
+#test
