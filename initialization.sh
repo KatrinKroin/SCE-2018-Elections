@@ -11,7 +11,7 @@ sudo yum -y groupinstall "Development Tools"
 sudo easy_install pip
 
 #clone project repository
-git clone https://github.com/SSilvering/SCE-2018-Elections
+git clone https://github.com/SSilvering/SCE-2018-Elections.git
 cd SCE-2018-Elections
 
 #install app requirements
